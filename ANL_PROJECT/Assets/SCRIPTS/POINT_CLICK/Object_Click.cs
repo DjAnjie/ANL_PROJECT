@@ -64,10 +64,10 @@ public class Object_Click : MonoBehaviour
     public void bushClicked() {
             gBush.gameObject.SetActive(false);
             if(popupText.enabled) {
-                popupText.text = "Item Found: Rock";
+                popupText.text = "<color=#ffff00ff>Item Found: Rock</color>";
             } else {
                 popupText.enabled = true;
-                popupText.text = "Item Found: Rock";
+                popupText.text = "<color=#ffff00ff>Item Found: Rock</color>";
             }
             if(inventory[0] != "Rock")  {
                 ButtonOne.gameObject.name = inventory[0];
@@ -77,7 +77,7 @@ public class Object_Click : MonoBehaviour
 
     IEnumerator removeText(string item) {
         if(item == "Unhold your item to pick up the map") {
-            popupText.text = "Unhold your item to pick up the map";
+            popupText.text = "<color=#ffff00ff>Unhold your item to pick up the map</color>";
         }
         if(inventory[0] == null) {
             inventory[0] = item;
@@ -107,7 +107,7 @@ public class Object_Click : MonoBehaviour
 
     IEnumerator removeTextTwo() {
         popupText.enabled = true;
-        popupText.text = "You need to be holding the rock to smash the bottles";
+        popupText.text = "<color=#ffff00ff>You need to be holding the rock to smash the bottles</color>";
         yield return new WaitForSecondsRealtime(2);
         popupText.enabled = false;
     }
@@ -125,7 +125,7 @@ public class Object_Click : MonoBehaviour
 
     void Update() {
         if(holding == "") {
-            holdingItem.text = "Currently Holding: Nothing";
+            holdingItem.text = "<color=#ffff00ff>Currently Holding: Nothing</color>";
             if(!backgroundImage.enabled) {
                 ButtonOne.gameObject.SetActive(false);
                 ButtonTwo.gameObject.SetActive(false);
@@ -139,13 +139,13 @@ public class Object_Click : MonoBehaviour
             }
 
         } else if(holding == "Rock"){ 
-            holdingItem.text = "Currently Holding: Rock";
+            holdingItem.text = "<color=#ffff00ff>Currently Holding: Rock</color>";
             if (inventory[1] != null && backgroundImage.enabled)
             {
                 ButtonTwo.gameObject.SetActive(true);
             }
         } else if (holding == "Glass") {
-            holdingItem.text = "Currently Holding: Glass";
+            holdingItem.text = "<color=#ffff00ff>Currently Holding: Glass</color>";
             if (inventory[0] != null && backgroundImage.enabled)
             {
                 ButtonOne.gameObject.SetActive(true);
@@ -160,7 +160,7 @@ public class Object_Click : MonoBehaviour
         } else if(holding == "Rock" && !isBottleDestroyed) {
             popupText.enabled=true;
             isBottleDestroyed = true;
-            popupText.text = "Item Found: Glass";
+            popupText.text = "<color=#ffff00ff>Item Found: Glass</color>";
             if(inventory[0] != null) {
                 if (inventory[1] == null) {
                     ButtonTwo.gameObject.name = inventory[1];
