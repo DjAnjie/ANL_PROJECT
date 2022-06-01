@@ -16,11 +16,9 @@ public class SETTINGS_MENU : MonoBehaviour
     public Toggle fullscreenToggle;
 
     private int screenInt;
-    Resolution[] resolutions;
     private bool isFullscreen = false;
 
     const string Qvalue = "optionvalue";
-    const string res = "resolutionoption";
 
     void Awake()
     {
@@ -37,11 +35,6 @@ public class SETTINGS_MENU : MonoBehaviour
             fullscreenToggle.isOn = false;
         }
 
-        resolutionDropdown.onValueChanged.AddListener(new UnityAction<int>(index =>
-        {
-            PlayerPrefs.SetInt(res, resolutionDropdown.value);
-            PlayerPrefs.Save();
-        }));
 
         qualityDropdown.onValueChanged.AddListener(new UnityAction<int>(index =>
         {
@@ -56,34 +49,8 @@ public class SETTINGS_MENU : MonoBehaviour
         //volMixer.SetFloat("volume", PlayerPrefs.GetFloat("MVolume"));
 
         qualityDropdown.value = PlayerPrefs.GetInt(Qvalue, 3);
-        resolutions = Screen.resolutions;
-        resolutionDropdown.ClearOptions();
 
-
-        List<string> options = new List<string>();
-
-        int currentResolutionIndex = 0;
-        for (int i = 0; i < resolutions.Length; i++)
-        {
-            string option = resolutions[i].width + "x" + resolutions[i].height + " " + resolutions[i].refreshRate + "Hz";
-            options.Add(option);
-
-            if (resolutions[i].width == Screen.currentResolution.width &&
-            resolutions[i].height == Screen.currentResolution.height &&
-            resolutions[i].refreshRate == Screen.currentResolution.refreshRate)
-            {
-                currentResolutionIndex = i;
-            }
         }
-        resolutionDropdown.AddOptions(options);
-        resolutionDropdown.value = PlayerPrefs.GetInt(res, currentResolutionIndex);
-        resolutionDropdown.RefreshShownValue();
-    }
-    public void SetResolution(int resolutionIndex)
-    {
-        Resolution resolution = resolutions[resolutionIndex];
-        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
-    }
 
     public void ChangeVol(float volume)
     {
