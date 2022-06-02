@@ -10,6 +10,7 @@ public class MENU_NAV : MonoBehaviour
     [SerializeField] Canvas mainMenu;
 
     [SerializeField] Canvas MainGameUI;
+    [SerializeField] Canvas UICanvas;
 
     public void MAIN_GAME() {
         SceneManager.LoadScene("MAIN_LEVEL");
@@ -38,6 +39,8 @@ public class MENU_NAV : MonoBehaviour
             Time.timeScale = 0f;
             MainGameUI.enabled = false;
             MainGameUI.gameObject.SetActive(false);
+            UICanvas.enabled = false;
+            UICanvas.gameObject.SetActive(false);
             mainMenu.enabled = true;
             AudioListener.pause = true;
         } else {
@@ -45,6 +48,8 @@ public class MENU_NAV : MonoBehaviour
             AudioListener.pause = false;
             MainGameUI.enabled = true;
             MainGameUI.gameObject.SetActive(true);
+            UICanvas.enabled = true;
+            UICanvas.gameObject.SetActive(true);
             mainMenu.enabled = false;
         }
     }
